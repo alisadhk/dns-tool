@@ -3,10 +3,10 @@
 <p align="center"><b>Switch the Windows DNS servers with a small menu</b></p>
 
 <p align="center">
-  ![Batch](https://img.shields.io/badge/Batch-script-4D4D4D)
-  ![Platform](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows&logoColor=white)
-  ![Updated](https://img.shields.io/badge/updated-2025-06-28-success)
-  [![Releases](https://img.shields.io/badge/downloads-Releases-blue)](https://github.com/alisadhk/dns-tool/releases/latest)
+  <img src="https://img.shields.io/badge/Batch-script-4D4D4D" alt="Batch">
+  <img src="https://img.shields.io/badge/platform-Windows-0078D6?logo=windows&logoColor=white" alt="Platform">
+  <img src="https://img.shields.io/badge/updated-2025--06--28-success" alt="Updated">
+  <a href="https://github.com/alisadhk/dns-tool/releases/latest"><img src="https://img.shields.io/badge/downloads-Releases-blue" alt="Releases"></a>
 </p>
 
 ---
@@ -20,6 +20,19 @@ etsh interface ip.
 - Three preset primary/secondary DNS pairs
 - Reset to DHCP (automatic DNS)
 - Back and exit options
+- Works for both wired and wireless adapters
+- Keeps a secondary DNS for every preset
+
+## How it works
+- The script asks which adapter to change (Ethernet or Wi-Fi).
+- A preset runs 
+etsh interface ip set dns for the primary server and 
+etsh interface ip add dns ... index=2 for the secondary.
+- The reset option switches the adapter back to DHCP so DNS comes from your router again.
+
+## Requirements
+- Windows 10/11 and an Administrator account.
+- Adapters named Ethernet or Wi-Fi (edit the script if yours are named differently).
 
 ## Screenshots
 <p align="center"><img src="screenshots/screenshot-1.png" alt="DNS Tool screenshot" width="720"></p>
@@ -47,6 +60,12 @@ Download the script from this repository and run it as described in **How to use
 ## Configuration and privacy
 - The preset addresses are public resolver IPs; edit them in dns.bat (look for 
 etsh interface ip set dns).
+
+## Troubleshooting
+- Nothing changes: run the script as Administrator.
+- Adapter not found: check the real name with 
+etsh interface show interface and edit it in the script.
+- Old answers still cached: run ipconfig /flushdns.
 
 
 
